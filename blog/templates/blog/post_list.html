@@ -1,27 +1,13 @@
-<html>
-    <head>
-        <title>MyShop Blog</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="/">MyShop Blog</a></h1>
-        </div>
+{% extends 'blog/base.html' %}
 
-        <!-- <div> -->
-        {% for post in posts %}
-            <div>
-                <p>published: {{ post.published_date }}</p>
-                <h1><a href="">{{ post.title }}</a></h1>
-                <p>{{ post.text|linebreaksbr }}</p>
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <div class="date">
+                {{ post.published_date }}
             </div>
-        {% endfor %}            
-        <!-- </div> -->
-
-        <div>
-            <p>published: 14.04.2021, 12:14</p>
-            <h2><a href="">My second post</a></h2>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing, elit. Voluptate voluptates et cum nemo deserunt, autem maiores distinctio mollitia architecto dolor possimus nam sed hic dolore laborum beatae facilis provident enim?
-            Eum consequatur tenetur fugit aliquam. Blanditiis repellat molestias voluptates laudantium voluptatibus facilis quod. Assumenda blanditiis harum dignissimos, facilis dolore? Dolorem iste, labore nostrum exercitationem doloremque quo iusto ipsa nihil blanditiis.</p>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            <p>{{ post.text|linebreaksbr }}</p>
         </div>
-    </body>
-</html>
+    {% endfor %}
+{% endblock %}
